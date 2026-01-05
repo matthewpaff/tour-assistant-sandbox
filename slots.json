@@ -1,0 +1,5 @@
+[
+  {"listing_id":"home-1","slot_id":"morning","provider":"sandbox-a","start_at":300,"expires_at":200,"version":1},
+  {"listing_id":"home-1","slot_id":"afternoon","provider":"sandbox-b","start_at":500,"expires_at":250,"version":1},
+  {"listing_id":"home-2","slot_id":"evening","provider":"sandbox-a","start_at":700,"expires_at":400,"version":1}
+]

@@ -24,6 +24,8 @@ class IntentTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.store.approve(key, 'person-1', False)
         self.store.approve(key, 'person-1', True)
+        with self.assertRaises(ValueError):
+            self.store.approve(key, 'person-1', True)
         self.assertEqual(self.store.provider_result(key, 'unknown')['status'], 'RECONCILING')
         self.assertEqual(self.store.provider_result(key, 'confirmed', 'receipt-1')['status'], 'CONFIRMED')
         self.assertEqual(len(self.store.events(key, 'person-1')), 4)

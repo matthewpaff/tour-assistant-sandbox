@@ -64,10 +64,9 @@ class IntentStore:
             raise ValueError('Explicit human consent is required')
         actor = _label(actor, 'actor', 80)
         with self.connect() as db:
-            row = db.execute('SELECT actor,status FROM intents WHERE key=?', (key,)).fetchone()
-            if not row or row[0] != actor or row[1] != 'PROPOSED':
+            changed = db.execute("UPDATE intents SET status='PENDING_PROVIDER' WHERE key=? AND actor=? AND status='PROPOSED'", (key, actor)).rowcount
+            if changed != 1:
                 raise ValueError('Intent unavailable for approval')
-            db.execute("UPDATE intents SET status='PENDING_PROVIDER' WHERE key=?", (key,))
             db.execute('INSERT INTO history(key,at,status,reason) VALUES(?,?,?,?)',
                        (key, self.clock(), 'PENDING_PROVIDER', 'Human consent recorded in local simulation'))
         return self._row(key)
@@ -81,6 +80,7 @@ class IntentStore:
             raise ValueError('Only confirmed outcomes may carry a receipt')
         status = {'confirmed': 'CONFIRMED', 'unknown': 'RECONCILING', 'failed': 'FAILED'}[outcome]
         with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
             row = db.execute('SELECT status,receipt FROM intents WHERE key=?', (key,)).fetchone()
             if not row or row[0] not in ('PENDING_PROVIDER', 'RECONCILING'):
                 raise ValueError('Intent unavailable for provider update')
@@ -92,6 +92,7 @@ class IntentStore:
         return self._row(key)
 
     def status(self, key, actor):
+        actor = _label(actor, 'actor', 80)
         row = self._row(key)
         if not row or row['actor'] != actor:
             raise ValueError('Intent unavailable')

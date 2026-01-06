@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tour Assistant Sandbox</title><link rel="stylesheet" href="/style.css"></head>
+<body><main>
+  <header><span class="eyebrow">SYNTHETIC LOCAL DEMO</span><h1>Tour Assistant Sandbox</h1>
+    <p>Find a tour option, review the suggestion, then explicitly approve a sandbox intent. No property is booked and no provider is contacted.</p></header>
+  <section class="grid"><article><h2>Available options</h2><p>These fixtures use a fixed logical clock. A cached option is never a confirmation.</p>
+      <div id="options"></div></article>
+    <article><h2>Assistant suggestion</h2><label for="request">What are you looking for?</label>
+      <input id="request" value="The soonest available tour" maxlength="1000">
+      <button id="suggest">Suggest an option</button><p id="suggestion"></p>
+      <small>Default suggestions are deterministic. An optional configured local model may propose only a listed option.</small></article></section>
+  <section><h2>Human approval and outcome</h2><p id="state">Choose a current option to create a proposal.</p>
+    <div class="actions"><button id="approve" disabled>Approve with consent</button>
+      <button id="unknown" disabled>Simulate unknown result</button>
+      <button id="confirm" disabled>Simulate provider confirmation</button></div>
+    <h3>Recorded transitions</h3><ol id="events"></ol></section>
+  <p id="message" role="status"></p>
+</main><script src="/app.js" defer></script></body></html>

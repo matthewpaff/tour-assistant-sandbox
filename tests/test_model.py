@@ -1,4 +1,7 @@
 import unittest
+import json
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from core import options
 from model import LocalSuggestionAdapter, local_ollama_transport
@@ -27,3 +30,25 @@ class ModelBoundaryTests(unittest.TestCase):
             '{"listing_id":"home-1","slot_id":"one","reason":"Booked","confirmed":true}'}})
         with self.assertRaises(ValueError):
             adapter.suggest('Book it', self.available)
+
+    def test_local_http_model_wire_is_only_a_suggestion(self):
+        received = []
+        class FakeModel(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+            def do_POST(self):
+                received.append(json.loads(self.rfile.read(int(self.headers['Content-Length']))))
+                body = json.dumps({'message': {'content':
+                    '{"listing_id":"home-1","slot_id":"one","reason":"Fixture match"}'}}).encode()
+                self.send_response(200);self.send_header('Content-Length', str(len(body)))
+                self.end_headers();self.wfile.write(body)
+        server = HTTPServer(('127.0.0.1', 0), FakeModel)
+        worker = threading.Thread(target=server.serve_forever, daemon=True);worker.start()
+        try:
+            transport = local_ollama_transport(f'http://127.0.0.1:{server.server_port}/api/chat')
+            suggestion = LocalSuggestionAdapter('fixture-model', transport).suggest('Soonest', self.available)
+            self.assertEqual(suggestion['authority'], 'proposal-only')
+            self.assertEqual(received[0]['model'], 'fixture-model')
+            self.assertFalse(received[0]['stream'])
+        finally:
+            server.shutdown();worker.join();server.server_close()

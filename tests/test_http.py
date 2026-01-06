@@ -53,3 +53,14 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.call('/api/propose', {}, {'Origin': 'https://attacker.example'})[0], 403)
         self.assertEqual(self.call('/api/propose', {'key': 'request-002', 'actor': 'person-1', 'source': 'assistant',
                        'listing_id': 'home-1', 'slot_id': 'missing'})[0], 400)
+
+    def test_optional_model_failure_has_bounded_http_error(self):
+        class OfflineModel:
+            def suggest(self, request, available):
+                raise OSError('secret local path')
+        self.server.shutdown();self.worker.join();self.server.server_close()
+        self.server = ThreadingHTTPServer(('127.0.0.1', 0), make_handler(IntentStore(Path(self.temp.name) / 'intents.db'), OfflineModel()))
+        self.worker = threading.Thread(target=self.server.serve_forever, daemon=True);self.worker.start()
+        status, result = self.call('/api/suggest', {'request': 'Soonest'})
+        self.assertEqual(status, 502)
+        self.assertEqual(result['error'], 'Optional local model is unavailable')

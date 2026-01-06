@@ -122,6 +122,8 @@ def make_handler(store, model=None):
                 return self.send_json(201, result)
             except (ValueError, TypeError, KeyError) as error:
                 return self.send_json(400, {'error': str(error)})
+            except OSError:
+                return self.send_json(502, {'error': 'Optional local model is unavailable'})
 
     return Handler
 

@@ -1,3 +1,8 @@
+> **Illustrative Git calendar:** 2026-06-01 through 2026-10-23, assigned November 6, 2026.
+> Actual development occurred in November 2026. These dates are simulated,
+> not evidence of historical work or employment. This supersedes older
+> statements below about actual Git dates. See [HISTORY.md](HISTORY.md).
+
 # Tour Assistant Sandbox
 
 An original 2026 showcase for safe tour discovery and booking intent review. It models the blueprint's assistant-as-client pattern with synthetic slots and provider outcomes. **No tour is booked, no property is reserved, and no provider is contacted.** Created in November 2026; commits use their actual creation dates.

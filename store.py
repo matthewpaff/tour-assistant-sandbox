@@ -82,6 +82,8 @@ class IntentStore:
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             row = db.execute('SELECT status,receipt FROM intents WHERE key=?', (key,)).fetchone()
+            if row and row == (status, receipt) and status in ('CONFIRMED', 'FAILED'):
+                return self._row(key)
             if not row or row[0] not in ('PENDING_PROVIDER', 'RECONCILING'):
                 raise ValueError('Intent unavailable for provider update')
             if row[0] == 'RECONCILING' and outcome == 'unknown':
@@ -89,6 +91,18 @@ class IntentStore:
             db.execute('UPDATE intents SET status=?,receipt=? WHERE key=?', (status, receipt, key))
             db.execute('INSERT INTO history(key,at,status,reason) VALUES(?,?,?,?)',
                        (key, self.clock(), status, 'Simulated provider outcome: ' + outcome))
+        return self._row(key)
+
+    def cancel_proposal(self, key, actor):
+        """Withdraw an unapproved proposal; never claim a remote booking was cancelled."""
+        actor = _label(actor, 'actor', 80)
+        with self.connect() as db:
+            changed = db.execute("UPDATE intents SET status='CANCELLED' WHERE key=? AND actor=? AND status='PROPOSED'",
+                                 (key, actor)).rowcount
+            if changed != 1:
+                raise ValueError('Only an owned unapproved proposal can be withdrawn')
+            db.execute('INSERT INTO history(key,at,status,reason) VALUES(?,?,?,?)',
+                       (key, self.clock(), 'CANCELLED', 'Human withdrew an unapproved local proposal'))
         return self._row(key)
 
     def status(self, key, actor):

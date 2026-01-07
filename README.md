@@ -1,11 +1,12 @@
-> **Illustrative Git calendar:** 2026-06-01 through 2026-10-23, assigned November 6, 2026.
-> Actual development occurred in November 2026. These dates are simulated,
-> not evidence of historical work or employment. This supersedes older
-> statements below about actual Git dates. See [HISTORY.md](HISTORY.md).
+> **Illustrative Git calendar:** January-November 2026, assigned November 6, 2026.
+> Actual implementation occurred in November 2026 with AI assistance. Generated
+> scenarios are committed individually for this presentation calendar; commit
+> counts are not evidence of earlier work or an equivalent number of features.
+> See [HISTORY.md](HISTORY.md) and [SCENARIOS.md](SCENARIOS.md).
 
 # Tour Assistant Sandbox
 
-An original 2026 showcase for safe tour discovery and booking intent review. It models the blueprint's assistant-as-client pattern with synthetic slots and provider outcomes. **No tour is booked, no property is reserved, and no provider is contacted.** Created in November 2026; commits use their actual creation dates.
+An original 2026 showcase for safe tour discovery and booking intent review. It models the blueprint's assistant-as-client pattern with synthetic slots and provider outcomes. **No tour is booked, no property is reserved, and no provider is contacted.** Created in November 2026; the displayed Git calendar is illustrative.
 
 ## Run
 
@@ -41,3 +42,9 @@ flowchart LR
 Latest slot versions can revoke a cached option. A proposal records the selected option but has no booking authority. Approval is scoped to the same demo actor and only transitions a proposal once. An uncertain provider result remains `RECONCILING` until an explicit later simulated outcome. The same idempotency key cannot be reused for another actor, source, or slot.
 
 The HTTP service binds to loopback, rejects foreign Host headers and cross-origin writes, and bounds JSON requests. Actor names are demo labels, **not authentication**; this is not a production authorization boundary. Source slots, receipts, and logical times are fixtures. See [HISTORY.md](HISTORY.md) for provenance.
+
+## Preference review and recovery
+
+Run `python cli.py review --provider sandbox-b --max-options 2` for explained selections. `POST /api/review` accepts `{"preferences":{"provider":"sandbox-b"}}`. The result includes excluded slots and reason codes and always has proposal-only authority. `POST /api/cancel-proposal` takes a key and demo actor; it can withdraw only an owned unapproved proposal. It does not cancel anything at a real provider. Repeated identical terminal provider results are idempotent; conflicting receipts are rejected.
+
+Run `python scenarios.py` to replay every disclosed synthetic scenario offline.

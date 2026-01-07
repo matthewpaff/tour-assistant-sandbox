@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlsplit
 from core import options
 from model import LocalSuggestionAdapter, local_ollama_transport
 from store import IntentStore
+from review import review_options
 
 
 ROOT = Path(__file__).resolve().parent
@@ -94,7 +95,15 @@ def make_handler(store, model=None):
                 if not isinstance(data, dict):
                     raise ValueError('Expected a JSON object')
                 path = urlsplit(self.path).path
-                if path == '/api/suggest':
+                if path == '/api/review':
+                    if set(data) != {'preferences'}:
+                        raise ValueError('Expected preferences')
+                    result = review_options(SLOTS, LOGICAL_NOW, data['preferences'])
+                elif path == '/api/cancel-proposal':
+                    if set(data) != {'key', 'actor'}:
+                        raise ValueError('Invalid withdrawal fields')
+                    result = store.cancel_proposal(data['key'], data['actor'])
+                elif path == '/api/suggest':
                     if set(data) != {'request'}:
                         raise ValueError('Request text required')
                     available = options(SLOTS, LOGICAL_NOW)

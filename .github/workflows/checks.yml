@@ -22,3 +22,5 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Check dashboard syntax
         run: node --check static/app.js
+      - name: Exercise the preference review CLI
+        run: python cli.py review --provider sandbox-b --max-options 1

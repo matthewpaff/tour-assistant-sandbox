@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0016",
+    "actor": "person-0016",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0016",
+          "person-0016",
+          "web",
+          {
+            "listing_id": "home-0016",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0016",
+          "person-0016-other",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      },
+      {
+        "op": "status",
+        "args": [
+          "intent-0016",
+          "person-0016-other"
+        ],
+        "error_contains": "Intent unavailable"
+      },
+      {
+        "op": "cancel",
+        "args": [
+          "intent-0016",
+          "person-0016"
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0016",
+          "person-0016",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "rejected",
+      "CANCELLED",
+      "rejected"
+    ],
+    "events": [
+      "PROPOSED",
+      "CANCELLED"
+    ]
+  },
+  "id": "intent-0017",
+  "description": "enforce ownership before withdrawing web intent 16"
+}

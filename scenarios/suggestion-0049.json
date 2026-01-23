@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "suggestion",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0048",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 16876,
+        "expires_at": 16696,
+        "version": 15
+      },
+      {
+        "listing_id": "home-0048",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 17176,
+        "expires_at": 16816,
+        "version": 15
+      }
+    ],
+    "now": 16576,
+    "raw": "{\"listing_id\": \"home-0048\", \"slot_id\": \"morning\", \"reason\": \"Requested current synthetic option\"}"
+  },
+  "expected": {
+    "selected": [
+      "home-0048",
+      "morning"
+    ],
+    "authority": "proposal-only"
+  },
+  "id": "suggestion-0049",
+  "description": "keep a valid choice proposal-only for home-0048"
+}

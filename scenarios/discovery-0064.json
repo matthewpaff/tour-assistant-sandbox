@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0063",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 18931,
+        "expires_at": 18751,
+        "version": 13
+      },
+      {
+        "listing_id": "home-0063",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 18931,
+        "expires_at": 18631,
+        "version": 14
+      }
+    ],
+    "now": 18631
+  },
+  "expected": {
+    "selected": []
+  },
+  "id": "discovery-0064",
+  "description": "let expired version 14 revoke cached home-0063 availability"
+}

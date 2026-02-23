@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0095",
+    "actor": "person-0095",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0095",
+          "person-0095",
+          "mobile",
+          {
+            "listing_id": "home-0095",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "propose",
+        "args": [
+          "intent-0095",
+          "person-0095",
+          "mobile",
+          {
+            "listing_id": "home-0095",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0095",
+          "person-0095",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0095",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0095",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0095",
+          "confirmed",
+          "receipt-95"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0095",
+          "confirmed",
+          "receipt-95"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "RECONCILING",
+      "CONFIRMED",
+      "CONFIRMED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "CONFIRMED"
+    ]
+  },
+  "id": "intent-0096",
+  "description": "deduplicate timeout and confirmation replays for mobile intent 95"
+}

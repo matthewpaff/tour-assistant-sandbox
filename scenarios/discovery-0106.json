@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0105",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 24685,
+        "expires_at": 24505,
+        "version": 4
+      },
+      {
+        "listing_id": "home-0105",
+        "slot_id": "morning",
+        "provider": "conflicting-provider",
+        "start_at": 24685,
+        "expires_at": 24505,
+        "version": 4
+      }
+    ],
+    "now": 24385
+  },
+  "error_contains": "Conflicting equal-version",
+  "id": "discovery-0106",
+  "description": "reject competing providers at home-0105 version 4"
+}

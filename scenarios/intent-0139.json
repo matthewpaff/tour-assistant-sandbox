@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0138",
+    "actor": "person-0138",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0138",
+          "person-0138",
+          "web",
+          {
+            "listing_id": "home-0138",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "propose",
+        "args": [
+          "intent-0138",
+          "person-0138",
+          "web",
+          {
+            "listing_id": "home-0138",
+            "slot_id": "other",
+            "provider": "sandbox-a"
+          }
+        ],
+        "error_contains": "conflicts with another intent"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0138",
+          "confirmed",
+          "premature"
+        ],
+        "error_contains": "unavailable for provider update"
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0138",
+          "person-0138",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0138",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0138",
+          "failed"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "rejected",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "FAILED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "FAILED"
+    ]
+  },
+  "id": "intent-0139",
+  "description": "reject key reuse and premature confirmation for intent 138"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0156",
+    "actor": "person-0156",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0156",
+          "person-0156",
+          "mobile",
+          {
+            "listing_id": "home-0156",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0156",
+          "person-0156-other",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      },
+      {
+        "op": "status",
+        "args": [
+          "intent-0156",
+          "person-0156-other"
+        ],
+        "error_contains": "Intent unavailable"
+      },
+      {
+        "op": "cancel",
+        "args": [
+          "intent-0156",
+          "person-0156"
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0156",
+          "person-0156",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "rejected",
+      "CANCELLED",
+      "rejected"
+    ],
+    "events": [
+      "PROPOSED",
+      "CANCELLED"
+    ]
+  },
+  "id": "intent-0157",
+  "description": "enforce ownership before withdrawing mobile intent 156"
+}

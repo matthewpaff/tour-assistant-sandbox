@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0160",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 32220,
+        "expires_at": 31920,
+        "version": 8
+      },
+      {
+        "listing_id": "home-0160",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 32520,
+        "expires_at": 32160,
+        "version": 8
+      }
+    ],
+    "now": 31920
+  },
+  "expected": {
+    "selected": [
+      [
+        "home-0160",
+        "afternoon",
+        8
+      ]
+    ]
+  },
+  "id": "discovery-0161",
+  "description": "omit availability expiring at logical second 31920"
+}

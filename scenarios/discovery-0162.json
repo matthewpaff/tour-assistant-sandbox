@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0161",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 32357,
+        "expires_at": 32058,
+        "version": 9
+      }
+    ],
+    "now": 32057
+  },
+  "expected": {
+    "selected": [
+      [
+        "home-0161",
+        "morning",
+        9
+      ]
+    ]
+  },
+  "id": "discovery-0162",
+  "description": "retain the final live second for home-0161"
+}

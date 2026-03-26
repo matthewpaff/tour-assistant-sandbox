@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "review",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0193",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 37041,
+        "expires_at": 36681,
+        "version": 7
+      },
+      {
+        "listing_id": "home-0193",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 36741,
+        "expires_at": 36561,
+        "version": 7
+      }
+    ],
+    "now": 36441,
+    "preferences": {
+      "start_at": 36741,
+      "end_at": 37041,
+      "max_options": 1
+    }
+  },
+  "expected": {
+    "selected": [
+      [
+        "home-0193",
+        "morning"
+      ]
+    ],
+    "excluded": [
+      {
+        "listing_id": "home-0193",
+        "slot_id": "afternoon",
+        "reasons": [
+          "result_limit"
+        ]
+      }
+    ],
+    "authority": "proposal-only"
+  },
+  "id": "review-0194",
+  "description": "apply the result limit after inclusive time filtering for home-0193"
+}

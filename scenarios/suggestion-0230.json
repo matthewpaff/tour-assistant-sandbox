@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "suggestion",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0229",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 41673,
+        "expires_at": 41493,
+        "version": 9
+      },
+      {
+        "listing_id": "home-0229",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 41973,
+        "expires_at": 41613,
+        "version": 9
+      }
+    ],
+    "now": 41373,
+    "raw": "{\"listing_id\": \"home-0229\", \"slot_id\": \"invented-slot\", \"reason\": \"Requested current synthetic option\"}"
+  },
+  "error_contains": "not in current availability",
+  "id": "suggestion-0230",
+  "description": "reject a model-invented slot for home-0229"
+}

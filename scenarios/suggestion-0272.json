@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "suggestion",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0271",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 47427,
+        "expires_at": 47247,
+        "version": 17
+      },
+      {
+        "listing_id": "home-0271",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 47727,
+        "expires_at": 47367,
+        "version": 17
+      }
+    ],
+    "now": 47127,
+    "raw": "{\"listing_id\":\"home-0271\",\"listing_id\":\"override\",\"slot_id\":\"morning\",\"reason\":\"demo\"}"
+  },
+  "error_contains": "Duplicate suggestion field",
+  "id": "suggestion-0272",
+  "description": "reject duplicate model listing fields for home-0271"
+}

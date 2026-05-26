@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0315",
+    "actor": "person-0315",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0315",
+          "person-0315",
+          "web",
+          {
+            "listing_id": "home-0315",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "propose",
+        "args": [
+          "intent-0315",
+          "person-0315",
+          "web",
+          {
+            "listing_id": "home-0315",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0315",
+          "person-0315",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0315",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0315",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0315",
+          "confirmed",
+          "receipt-315"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0315",
+          "confirmed",
+          "receipt-315"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "RECONCILING",
+      "CONFIRMED",
+      "CONFIRMED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "CONFIRMED"
+    ]
+  },
+  "id": "intent-0316",
+  "description": "deduplicate timeout and confirmation replays for web intent 315"
+}

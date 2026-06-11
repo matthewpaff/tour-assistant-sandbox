@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0364",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 60168,
+        "expires_at": 59988,
+        "version": 9
+      },
+      {
+        "listing_id": "home-0364",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 60168,
+        "expires_at": 59868,
+        "version": 8
+      }
+    ],
+    "now": 59868
+  },
+  "expected": {
+    "selected": [
+      [
+        "home-0364",
+        "morning",
+        9
+      ]
+    ]
+  },
+  "id": "discovery-0365",
+  "description": "ignore a late older snapshot for home-0364"
+}

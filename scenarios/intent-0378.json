@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0377",
+    "actor": "person-0377",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0377",
+          "person-0377",
+          "web",
+          {
+            "listing_id": "home-0377",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0377",
+          "person-0377",
+          false
+        ],
+        "error_contains": "Explicit human consent"
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0377",
+          "person-0377",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0377",
+          "failed"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0377",
+          "failed"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "PENDING_PROVIDER",
+      "FAILED",
+      "FAILED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "FAILED"
+    ]
+  },
+  "id": "intent-0378",
+  "description": "keep declined consent and failure replay auditable for intent 377"
+}

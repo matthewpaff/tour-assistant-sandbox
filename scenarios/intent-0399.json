@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0398",
+    "actor": "person-0398",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0398",
+          "person-0398",
+          "mobile",
+          {
+            "listing_id": "home-0398",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "propose",
+        "args": [
+          "intent-0398",
+          "person-0398",
+          "mobile",
+          {
+            "listing_id": "home-0398",
+            "slot_id": "other",
+            "provider": "sandbox-a"
+          }
+        ],
+        "error_contains": "conflicts with another intent"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0398",
+          "confirmed",
+          "premature"
+        ],
+        "error_contains": "unavailable for provider update"
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0398",
+          "person-0398",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0398",
+          "unknown"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0398",
+          "failed"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "rejected",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "FAILED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING",
+      "FAILED"
+    ]
+  },
+  "id": "intent-0399",
+  "description": "reject key reuse and premature confirmation for intent 398"
+}

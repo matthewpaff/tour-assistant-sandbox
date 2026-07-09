@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0417",
+    "actor": "person-0417",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0417",
+          "person-0417",
+          "assistant",
+          {
+            "listing_id": "home-0417",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0417",
+          "person-0417",
+          false
+        ],
+        "error_contains": "Explicit human consent"
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0417",
+          "person-0417",
+          true
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0417",
+          "failed"
+        ]
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0417",
+          "failed"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "PENDING_PROVIDER",
+      "FAILED",
+      "FAILED"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "FAILED"
+    ]
+  },
+  "id": "intent-0418",
+  "description": "keep declined consent and failure replay auditable for intent 417"
+}

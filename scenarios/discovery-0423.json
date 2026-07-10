@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "discovery",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0422",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 67814,
+        "expires_at": 67814,
+        "version": 15
+      }
+    ],
+    "now": 67814
+  },
+  "expected": {
+    "selected": []
+  },
+  "id": "discovery-0423",
+  "description": "exclude a tour starting at the query boundary for home-0422"
+}

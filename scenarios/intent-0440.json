@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0439",
+    "actor": "person-0439",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0439",
+          "person-0439",
+          "web",
+          {
+            "listing_id": "home-0439",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0439",
+          "person-0439",
+          true
+        ]
+      },
+      {
+        "op": "cancel",
+        "args": [
+          "intent-0439",
+          "person-0439"
+        ],
+        "error_contains": "unapproved proposal"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0439",
+          "unknown",
+          "unsupported-receipt"
+        ],
+        "error_contains": "Only confirmed outcomes"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0439",
+          "unknown"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "rejected",
+      "rejected",
+      "RECONCILING"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING"
+    ]
+  },
+  "id": "intent-0440",
+  "description": "leave uncertain web intent 439 pending reconciliation"
+}

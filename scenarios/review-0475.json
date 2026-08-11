@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "review",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0474",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 75238,
+        "expires_at": 75058,
+        "version": 16
+      },
+      {
+        "listing_id": "home-0474",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 75538,
+        "expires_at": 75178,
+        "version": 16
+      }
+    ],
+    "now": 74938,
+    "preferences": {
+      "max_options": null
+    }
+  },
+  "error_contains": "max_options must be",
+  "id": "review-0475",
+  "description": "reject invalid preference limits for home-0474"
+}

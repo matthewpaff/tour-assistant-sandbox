@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "review",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0472",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 74964,
+        "expires_at": 74784,
+        "version": 14
+      },
+      {
+        "listing_id": "home-0472",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 75264,
+        "expires_at": 74904,
+        "version": 14
+      }
+    ],
+    "now": 74664,
+    "preferences": {
+      "provider": "sandbox-b"
+    }
+  },
+  "expected": {
+    "selected": [
+      [
+        "home-0472",
+        "afternoon"
+      ]
+    ],
+    "excluded": [
+      {
+        "listing_id": "home-0472",
+        "slot_id": "morning",
+        "reasons": [
+          "different_provider"
+        ]
+      }
+    ],
+    "authority": "proposal-only"
+  },
+  "id": "review-0473",
+  "description": "explain provider preference exclusions for home-0472"
+}

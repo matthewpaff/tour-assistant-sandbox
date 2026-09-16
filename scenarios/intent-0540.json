@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0539",
+    "actor": "person-0539",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0539",
+          "person-0539",
+          "assistant",
+          {
+            "listing_id": "home-0539",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0539",
+          "person-0539",
+          true
+        ]
+      },
+      {
+        "op": "cancel",
+        "args": [
+          "intent-0539",
+          "person-0539"
+        ],
+        "error_contains": "unapproved proposal"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0539",
+          "unknown",
+          "unsupported-receipt"
+        ],
+        "error_contains": "Only confirmed outcomes"
+      },
+      {
+        "op": "provider",
+        "args": [
+          "intent-0539",
+          "unknown"
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "rejected",
+      "rejected",
+      "RECONCILING"
+    ],
+    "events": [
+      "PROPOSED",
+      "PENDING_PROVIDER",
+      "RECONCILING"
+    ]
+  },
+  "id": "intent-0540",
+  "description": "leave uncertain assistant intent 539 pending reconciliation"
+}

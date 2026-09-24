@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "suggestion",
+  "input": {
+    "rows": [
+      {
+        "listing_id": "home-0550",
+        "slot_id": "morning",
+        "provider": "sandbox-a",
+        "start_at": 85650,
+        "expires_at": 85470,
+        "version": 7
+      },
+      {
+        "listing_id": "home-0550",
+        "slot_id": "afternoon",
+        "provider": "sandbox-b",
+        "start_at": 85950,
+        "expires_at": 85590,
+        "version": 7
+      }
+    ],
+    "now": 85350,
+    "raw": "{\"listing_id\": \"home-0550\", \"slot_id\": \"morning\", \"reason\": \"Requested current synthetic option\", \"confirmed\": true}"
+  },
+  "error_contains": "may only choose",
+  "id": "suggestion-0551",
+  "description": "reject model claims of confirmation for home-0550"
+}

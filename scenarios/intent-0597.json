@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "kind": "intent",
+  "input": {
+    "key": "intent-0596",
+    "actor": "person-0596",
+    "steps": [
+      {
+        "op": "propose",
+        "args": [
+          "intent-0596",
+          "person-0596",
+          "assistant",
+          {
+            "listing_id": "home-0596",
+            "slot_id": "morning",
+            "provider": "sandbox-a"
+          }
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0596",
+          "person-0596-other",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      },
+      {
+        "op": "status",
+        "args": [
+          "intent-0596",
+          "person-0596-other"
+        ],
+        "error_contains": "Intent unavailable"
+      },
+      {
+        "op": "cancel",
+        "args": [
+          "intent-0596",
+          "person-0596"
+        ]
+      },
+      {
+        "op": "approve",
+        "args": [
+          "intent-0596",
+          "person-0596",
+          true
+        ],
+        "error_contains": "unavailable for approval"
+      }
+    ]
+  },
+  "expected": {
+    "observed": [
+      "PROPOSED",
+      "rejected",
+      "rejected",
+      "CANCELLED",
+      "rejected"
+    ],
+    "events": [
+      "PROPOSED",
+      "CANCELLED"
+    ]
+  },
+  "id": "intent-0597",
+  "description": "enforce ownership before withdrawing assistant intent 596"
+}
